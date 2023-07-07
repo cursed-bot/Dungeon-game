@@ -14,8 +14,8 @@ class inventory:
                 break
             else:
                 pass
-        print('No slots left!')
-               
+
+
 class slot:
         def __init__(self):
             self.stack = []
