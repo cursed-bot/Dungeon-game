@@ -1,4 +1,5 @@
 from random import randint
+from dungeon_game.items import inventory
 weapons = ['axe', 'sword', 'fist']
 weapon_dmg = [10, 15, 3]
 class human:
@@ -7,6 +8,7 @@ class human:
         self.health = 100
         self.alive = True
         self.name = name
+        self.inventory = inventory(name)
         #weapon = randint(1, 3)
         #self.weapon = weapons[weapon]
         self.dmg = dmg #+ weapon_dmg[weapon]
@@ -39,9 +41,6 @@ class human:
         else:
             target.take_damage(self.dmg)
     
-    # This will be added later
-    def inventory(self):
-        pass
 
 class monster:
 
