@@ -1,7 +1,7 @@
 from random import randint
 from dungeon_game.items import inventory
-weapons = ['axe', 'sword', 'fist']
-weapon_dmg = [10, 15, 3]
+weapons = ['axe', 'sword', 'mace', 'whip']
+weapon_dmg = [3, 5, 4, 2]
 class human:
 
     def __init__(self, name, dmg):
@@ -99,4 +99,4 @@ class goblin(monster):
             super().__init__("goblin", 10, 20, 2)
     
     def drops(self):
-        self.possible_drops = ["20 life"]
+        self.drops = weapons[randint(0, 1)]
