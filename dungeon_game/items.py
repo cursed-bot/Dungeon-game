@@ -19,6 +19,13 @@ class inventory:
         if c == 4:
             print('slots full!')
     
+    def __str__(self):
+        for slot in self.inv:
+            try:
+                print(f'{slot.item_id}: {slot.stack[0]} #{len(slot.stack)}') #Since each stack can only hold one type of item, we only need to check the first index and get the length to determine what is in the stack
+            except:
+                pass
+    
 
 
 class slot:
@@ -30,7 +37,7 @@ class slot:
     
 class test_item:
     def __init__(self, user):
-        self.id = 0
+        self.id = 0 # ids denote what inv slot an item goes into
         self.type = 'testing'
         self.actions = {'heal': 20, 'super heal': 100}
         self.action_list = {1: 'heal', 2: 'super heal'}
@@ -49,4 +56,9 @@ class test_item:
     
     def heal(self, amt, target):
         target.health = target.health + amt
+
+class life_drop:
+    def __init__(self):
+        self.id = 00 # double zero id is not an inv item, it'll make sense when the drop sys is implmented. i hope
+        self.heal_amt = 20
 
