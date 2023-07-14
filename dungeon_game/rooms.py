@@ -10,14 +10,16 @@ rsize = ["small", "medium", "large"]
 ######################
 class Room:
     def __init__(self, *args):
-        try:
+        try: # Try to set room config settings using values in the order of: room type, room size, and the player
             self.room_type = rooms[args[0]]
-            self.size = rsize[args[1]] 
+            self.size = rsize[args[1]]
+            self.player = args[2]
             self.__room_config()
-        except:
-            print('error parsing args / no args given, randomizing...')
+        except: # If that fails, randomize the room type and size, but set the player as the player is ALWAYS passed when a Room is created 
+            print('error parsing args, randomizing...')
             self.room_type = rooms[randint(0, 3)]
             self.size = rsize[0]
+            self.player = args[0]
             self.__room_config() # makes a room based on the randomly picked indexes
             #self.__test_room() #for testing 
 

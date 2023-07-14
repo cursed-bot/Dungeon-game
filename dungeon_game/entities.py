@@ -1,5 +1,6 @@
 from random import randint
-from dungeon_game.items import inventory
+from dungeon_game.items import *
+
 weapons = ['axe', 'sword', 'mace', 'whip']
 weapon_dmg = [3, 5, 4, 2]
 class human:
@@ -87,8 +88,9 @@ class slime(monster):
         except:
             super().__init__("slime", 5, 15, 2)
     
-    def drops(self):
-        self.possible_drops = ["10 life"]
+    def drop(self):
+        return life_drop(10)
+
 
 class goblin(monster):
     def __init__(self, *args):
@@ -98,5 +100,6 @@ class goblin(monster):
         except:
             super().__init__("goblin", 10, 20, 2)
     
-    def drops(self):
-        self.drops = weapons[randint(0, 1)]
+    def drop(self):
+        return life_drop(20)
+        

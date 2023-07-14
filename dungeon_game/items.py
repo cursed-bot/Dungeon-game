@@ -1,4 +1,5 @@
 #for setting up items/ inventory
+from random import randint
 
 class inventory:
     def __init__(self, user):
@@ -6,26 +7,32 @@ class inventory:
     
     def get_item(self, item):
         c = 0
-        for i in range(0, 3):
-            if len(self.inv[i].stack) != 5 and self.inv[i].item_id == item.id:
-                self.inv[i].stack.append(item)
+        for slot in self.inv: #looping by objects is better than ranges!
+            if len(slot.stack) != 5 and slot.item_id == item.id:
+                slot.stack.append(item)
                 break
-            # elif self.inv[i].stack[0] == item and len(self.inv[i].stack) != 5:
-            #     self.inv[i].stack.append(item)
-            #     break
             else:
-                pass
-            c = c +1
+                c = c + 1
+                continue
         if c == 4:
             print('slots full!')
     
-    def __str__(self):
+    def use_item(self, stack_id):
         for slot in self.inv:
-            try:
-                print(f'{slot.item_id}: {slot.stack[0]} #{len(slot.stack)}') #Since each stack can only hold one type of item, we only need to check the first index and get the length to determine what is in the stack
-            except:
-                pass
-    
+            if slot.item_id == stack_id and len(slot.stack) != 0:
+                slot.stack[0].use()
+                slot.stack.pop()
+            else:
+                continue
+
+    def __str__(self):
+        rtnstr = '' 
+        for slot in self.inv:
+            try: #Since each stack can only hold one type of item, we only need to check the first index and get the length to determine what is in the stack
+                rtnstr = rtnstr + f'{slot.item_id}: {slot.stack[0]} #{len(slot.stack)} \n ---------------------- \n' 
+            except: 
+                continue # An error can only occur if the stack is empty, so continue to the next stack if a failure occurs
+        return rtnstr
 
 
 class slot:
@@ -53,12 +60,31 @@ class test_item:
             if k == int(choice.strip()):
                 self.heal(self.actions.get(v), self.user)
                 break
+            else:
+                continue
     
     def heal(self, amt, target):
         target.health = target.health + amt
+    
+    def __str__(self):
+        return "Testing item"
+
+class dummy_item: #this is an item that just takes up a random slot when it is picked up, for testing only!!!
+    def __init__(self):
+        self.id = 3
+
+    def __str__(self):
+        return "dummy item"
 
 class life_drop:
-    def __init__(self):
+    def __init__(self, amt, player):
         self.id = 00 # double zero id is not an inv item, it'll make sense when the drop sys is implmented. i hope
-        self.heal_amt = 20
+        self.heal_amt = amt
+        self.player = player
+        self.heal(heal_amt)
+
+    def heal(self, heal_amt):
+        pass
+
+
 

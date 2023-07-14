@@ -4,9 +4,9 @@ from dungeon_game.entities import *
 #from dungeon_game.level import *
 
 def main():
-    room1 = Room()
-    #room2 = Room()
     player = human('player', 5)
+    room1 = Room(player)
+    #room2 = Room()
     total_e = len(room1.enemies)
     total_d = 0
 
