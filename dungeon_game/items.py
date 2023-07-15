@@ -80,11 +80,13 @@ class life_drop:
     def __init__(self, amt, player):
         self.id = 00 # double zero id is not an inv item, it'll make sense when the drop sys is implmented. i hope
         self.heal_amt = amt
-        self.player = player
-        self.heal(heal_amt)
+        self.playerhealth = player.health
+        self.heal(self.heal_amt)
+        player.health = self.playerhealth
 
     def heal(self, heal_amt):
-        pass
+        self.playerhealth = self.playerhealth + heal_amt
+
 
 
 
