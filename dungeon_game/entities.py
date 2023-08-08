@@ -40,7 +40,7 @@ class human:
         if self.alive == False:
             pass
         else:
-            target.take_damage(self.dmg)
+            target.take_damage(self.dmg, self)
     
 
 class monster:
@@ -60,7 +60,7 @@ class monster:
 
         return "{} is {} and has {} health left".format(self.species, dead, self.health)
     
-    def death(self):
+    def death(self, *args):
         self.health = 0
         self.alive = False
         print("{} died!".format(self.species))
@@ -76,7 +76,7 @@ class monster:
             print("{} is already dead!".format(self.species))
         elif (self.health - dmg) <= 0:
             self.health = 0
-            self.death(attacker)
+            self.death()
         else:
             self.health = self.health - dmg
 
@@ -84,12 +84,11 @@ class slime(monster):
     def __init__(self, *args):
         try:
             self.id = args[0]
-            self.target = args[1]
             super().__init__("slime", 5, 15, 2)
         except:
             super().__init__("slime", 5, 15, 2)
     
-    def death(self):
+    def death(self, target):
         super().death(self)
         print(f'{self.species} dropped 10 life!')
         life_drop(10, self.target)
@@ -104,5 +103,4 @@ class goblin(monster):
             super().__init__("goblin", 10, 20, 2)
     
     def drop(self):
-        return life_drop(20)
-        
+        return life_drop(20) 
