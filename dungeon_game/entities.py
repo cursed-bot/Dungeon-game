@@ -89,7 +89,7 @@ class slime(monster):
             self.health = self.health - dmg
         
     def mdeath(self, target):
-        super().death(self)
+        super().death()
         print(f'{self.species} dropped 10 life!')
         life_drop(2, target)
 
@@ -102,7 +102,7 @@ class goblin(monster):
             super().__init__("goblin", 10, 20, 2)
 
     def mdeath(self, target):
-        super().death(self)
+        super().death()
         life_drop(5, target)
 
     def take_damage(self, dmg, attacker): 
