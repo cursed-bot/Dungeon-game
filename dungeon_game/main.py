@@ -5,7 +5,7 @@ from dungeon_game.entities import *
 
 def main():
     player = human('player', 5)
-    room1 = Room(player)
+    room1 = Room(player) # to manually set room see rooms.py for arg format, but ALWAYS pass the player!
     #room2 = Room()
     total_e = len(room1.enemies)
     total_d = 0
@@ -26,6 +26,7 @@ def main():
                     else:
                         continue
         if total_d == total_e:
+            print(player.health)
             print('All enemies defeated!')
             break
 
