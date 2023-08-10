@@ -1,3 +1,4 @@
+# This file contains all of the classes for the player and enemies
 from random import randint
 from dungeon_game.items import *
 
@@ -102,6 +103,28 @@ class goblin(monster):
         super().death()
         print(f'{self.species} dropped 5 life!')
         life_drop(5, target)
+
+    def take_damage(self, dmg, attacker): 
+        if self.alive == False:
+            print("{} is already dead!".format(self.species))
+        elif (self.health - dmg) <= 0:
+            self.health = 0
+            self.mdeath(attacker)
+        else:
+            self.health = self.health - dmg
+
+class goul(monster):
+    def __init__(self, *args):
+        try:
+            self.id = args[0]
+            super().__init__("goul", 10, 30, 4)
+        except:
+            super().__init__("goul", 10, 30, 4)
+
+    def mdeath(self, target):
+        super().death()
+        print(f'{self.species} dropped 15 life!')
+        life_drop(15, target)
 
     def take_damage(self, dmg, attacker): 
         if self.alive == False:

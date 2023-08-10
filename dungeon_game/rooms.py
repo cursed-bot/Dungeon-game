@@ -1,5 +1,5 @@
 from random import randint
-from dungeon_game.entities import slime, goblin
+from dungeon_game.entities import slime, goblin, goul
 
 rooms = ["hallway", "normal", "dungeon", "armoury"]
 rsize = ["small", "medium", "large"]
@@ -18,7 +18,7 @@ class Room:
         except: # If that fails, randomize the room type and size, but set the player as the player is ALWAYS passed when a Room is created 
             print('error parsing args, randomizing...')
             self.room_type = rooms[randint(0, 3)]
-            self.size = rsize[0]
+            self.size = rsize[randint(0, 1)]
             self.player = args[0]
             self.__room_config() # makes a room based on the randomly picked indexes
             #self.__test_room() #for testing 
@@ -45,18 +45,29 @@ class Room:
                         self.enemies = [self.m1, self.m2, self.m3]
                     case '_':
                         print('Something went wrong!')
-            # case 'medium':
-            #     match self.room_type:
-            #         case 'normal':
-            #             print('5')
-            #         case 'hallway':
-            #             print('6')
-            #         case 'armoury':
-            #             print('7')
-            #         case 'dungeon':
-            #             print('8')
-            #         case '_':
-            #             pass
+            case 'medium':
+                match self.room_type:
+                    case 'normal':
+                        self.m1 = slime(1)
+                        self.m2 = slime(2)
+                        self.m3 = slime(3)
+                        self.enemies = [self.m1, self.m2, self.m3]
+                    case 'hallway':
+                        self.m1 = goblin(1)
+                        self.enemies = [self.m1]
+                    case 'armoury':
+                        self.m1 = goul(1)
+                        self.m2 = goblin(2)
+                        self.enemies = [self.m1, self.m2]
+                    case 'dungeon':
+                        self.m1 = goblin(1)
+                        self.m2 = goblin(2)
+                        self.m3 = slime(3)
+                        self.m4 = slime(4)
+                        self.m5 = goul(5)
+                        self.enemies = [self.m1, self.m2, self.m3, self.m4, self.m5]
+                    case '_':
+                        print('Something went wrong!')
             # case 'large':
             #     match self.room_type:
             #         case 'normal':

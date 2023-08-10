@@ -1,12 +1,10 @@
 # A dungon game! I guess
 from dungeon_game.rooms import *
 from dungeon_game.entities import *
-#from dungeon_game.level import *
 
 def main():
-    player = human('player', 5)
-    room1 = Room(player) # to manually set room see rooms.py for arg format, but ALWAYS pass the player!
-    #room2 = Room()
+    player = human('player', 7)
+    room1 = Room(player) # to manually set room see rooms.py for arg format, but ALWAYS pass the player
     total_e = len(room1.enemies)
     total_d = 0
 
