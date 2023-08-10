@@ -1,5 +1,7 @@
 #for setting up items/ inventory
 from random import randint
+weapons = ['axe', 'sword', 'mace', 'whip']
+weapon_dmg = [3, 5, 4, 2]
 
 class inventory:
     def __init__(self, user):
@@ -87,6 +89,7 @@ class life_drop:
     def heal(self, heal_amt):
         self.playerhealth = self.playerhealth + heal_amt
 
-
+class weapon:
+    pass
 
 

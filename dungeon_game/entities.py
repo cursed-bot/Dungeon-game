@@ -1,8 +1,7 @@
 from random import randint
 from dungeon_game.items import *
 
-weapons = ['axe', 'sword', 'mace', 'whip']
-weapon_dmg = [3, 5, 4, 2]
+
 class human:
 
     def __init__(self, name, dmg):
@@ -10,9 +9,7 @@ class human:
         self.alive = True
         self.name = name
         self.inventory = inventory(name)
-        #weapon = randint(1, 3)
-        #self.weapon = weapons[weapon]
-        self.dmg = dmg #+ weapon_dmg[weapon]
+        self.dmg = dmg
 
     def __str__(self):
         if self.alive == False:
